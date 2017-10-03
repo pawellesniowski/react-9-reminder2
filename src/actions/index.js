@@ -1,3 +1,12 @@
-import React from 'react'
+import { ADD_REMINDER } from '../constans.js';
 
-export const addReminder = 1;
+// create actions creater:
+export const addReminder = (text) => {
+    const action = {
+        type: ADD_REMINDER,
+        text
+    }
+    return action;
+}
+
+// export default addReminder;

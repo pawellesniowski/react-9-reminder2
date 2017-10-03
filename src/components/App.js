@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import addReminder from '../actions'
+import addReminder from '../actions/index.js'
 
 class App extends Component{
     constructor(props){
