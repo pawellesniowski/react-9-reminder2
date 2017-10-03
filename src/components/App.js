@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import addReminder from '../actions/index.js'
+// import addReminder from '../actions/index.js';
 
 class App extends Component{
     constructor(props){
@@ -13,6 +13,8 @@ class App extends Component{
 
     addReminder(){
         console.log("this.props from addReminder: ", this.props);
+        console.log("this.state from addReminder: ", this.state);
+        
     }
 
 
