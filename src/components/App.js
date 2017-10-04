@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-// import addReminder from '../actions/index.js';
+import { connect } from 'react-redux';
+
+import { addReminder, deleteReminder } from '../actions'; 
 
 class App extends Component{
     constructor(props){
@@ -10,13 +12,33 @@ class App extends Component{
 
     }
 
-
+    //helper methods:
     addReminder(){
-        console.log("this.props from addReminder: ", this.props);
-        console.log("this.state from addReminder: ", this.state);
-        
+        this.props.addReminder(this.state.text);
+    }
+    deleteReminder(id){
+        this.props.deleteReminder(id);
     }
 
+    renderReminders(){
+        const { reminders } = this.props;
+        return (
+            <ul>
+                {
+                    reminders.map(reminder=>{
+                        return(
+                            <li key={reminder.id}>
+                                <div>{reminder.text}</div>
+                                <div className="delete_button"
+                                    onClick={()=>{this.deleteReminder(reminder.id)}}>X</div>
+                            </li>
+
+                        );
+                    })
+                }
+            </ul>
+        )
+    }
 
     render(){
         return(
@@ -44,10 +66,19 @@ class App extends Component{
                     >
                         Add reminder
                     </button>
+
+                    { this.renderReminders() }
                 </form>
             </div>
         );
     };
 };
 
-export default App;
+function mapStateToProps(state){
+    console.log("state: ", state);
+    return {
+        reminders: state
+    }
+}
+
+export default connect(mapStateToProps, { addReminder, deleteReminder })(App);
